@@ -54,12 +54,15 @@ function createVariable (id, type, value) {
                 //char
                 whatType = "char";
                 break;
+            default :
+                whatType = "unknown";
+                break;
         }
 
         innerType.innerHTML = "<br/>" + whatType;
 
         //변수명은 h4 태그로 표현
-        var  innerId = document.createElement('h4');
+        var innerId = document.createElement('h4');
         innerId.innerHTML = id;
 
         eval("variable" + index + ".append(innerType)");
@@ -67,11 +70,11 @@ function createVariable (id, type, value) {
 
         if(index == 0){
             //첫번째 배열이면
-            eval("variable" + index + ".style.marginTop = '10%';")
+            eval("variable" + index + ".style.marginTop = '1%';")
            
         } 
         else {
-            eval("variable" + index + ".style.marginTop = '10%';")
+            eval("variable" + index + ".style.marginTop = '1%';")
             eval("variable" + index + ".style.marginLeft = '2%';")
         }
       

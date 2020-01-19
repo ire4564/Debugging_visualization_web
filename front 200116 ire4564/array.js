@@ -1,7 +1,14 @@
 //array 생성 처리
 //배열 최대치 24개
+
+var howManyArray = 0;
 var index = 0; //배열이 현재 몇개 생성되었는지
+
+//Array를 생성할 때 필요한 정보들을 모아놓은 배열
 var thisArray = []; //현재 사용하고 있는 배열 아이디
+var thisType = []; //현재 만들어진 배열의 타입
+var thisNum = []; //array 개수
+
 var alerts = 0; //알람을 한번만 설정하기 위해서
 var colorCode = ['#819FF7', '#D8CEF6', '#F5BCA9']; //랜덤 색깔(배열 구분)
 
@@ -14,7 +21,7 @@ document.getElementById('show').append(showExist);
 //창크기 변화 감지
 $( window ).resize(function() {
     var windowSize = $(window).width();
-    console.log(windowSize);
+   // console.log(windowSize);
     //화면 사이즈가 1595 까지 배열이 깨지지 않음
     //이 이상이 되면 9까지 배열을 늘려서 표현해도 될 것 같다.
     
@@ -54,6 +61,8 @@ $( window ).resize(function() {
 
 //변수명, 타입, 개수 인자로 입력
 function createArray(id, type, num) {
+
+    var arrayid = '';
     var windowSize = $(window).width();
     var showNewArray = document.createElement('div');
    // showNewArray.style.float = "center";
@@ -65,19 +74,19 @@ function createArray(id, type, num) {
     var showType = document.createElement('h2');
     var newType = "";
     switch(type) {
-        case 0 :
+        case 10 :
             //int(long)
             newType = "int";
             break;
-        case 1 :
+        case 11 :
             //double(float)
             newType = "double";
             break;
-        case 2 :
+        case 12 :
             //boolean
             newType = "bool";
             break;
-        case 3 :
+        case 13 :
             //char
             newType = "char";
             break;
@@ -100,8 +109,15 @@ function createArray(id, type, num) {
             arrayColor = colorCode[1];
         }
         //임시방편으로 보편화 x (위치 조정 필요)
-        var compare = 16; //원래 있어야 하는 것의 인덱스 
-        var howmuch = compare - index; //몇 개가 없는지
+
+        if(index < 8){
+            var compare = 8; //원래 있어야 하는 것의 인덱스 
+            var howmuch = compare - index; //몇 개가 없는지
+        }
+        else {
+            var compare = 16; //원래 있어야 하는 것의 인덱스 
+            var howmuch = compare - index; //몇 개가 없는지
+        }
 
         for(var k=0; k<howmuch; k++) {
             var addEmpty = document.createElement('div');
@@ -109,15 +125,18 @@ function createArray(id, type, num) {
             showNewArray.append(addEmpty);
         }
 
-        thisArray.push(String(id));
-        console.log(thisArray)
         index = 0;
     }
     else {
         arrayColor = colorCode[0];
         //처음 만드는 배열이라면
-        thisArray.push(String(id));
     }
+
+    thisArray.push(String(id));
+    thisType.push(type);
+    thisNum.push(num);
+    
+    howManyArray++;
 
     showID.style.color = arrayColor;
     showType.style.color = arrayColor;
@@ -190,9 +209,9 @@ function createArray(id, type, num) {
             }
         
             //배열의 아이디
-            var arrayid = id + String(index);
+            arrayid = id + String(index);
 
-            console.log(arrayColor)
+           // console.log(arrayColor)
         
             eval("$(array" + index + ").attr('id', arrayid)");  
             eval("array" + index + ".style.backgroundColor = arrayColor;")
@@ -202,50 +221,124 @@ function createArray(id, type, num) {
         }
     
         paper.append(showNewArray);
+
+        return arrayid; //마지막으로 만들어진 array id 반환
 }
 
-//2차원 배열 따로 만들기
-//row: 행(가로) col: 열(세로)
-function createDoubleArray(row, col) {
+//사용되고 있는 곳 표시 (변수명, 인덱스)
+var beforeHere = ''; //전에 있던 곳 표시
 
+function hereArray(id, indexNum){
+    var realID = id + String(indexNum);
+
+    if(beforeHere != '') {
+        $("#"+ beforeHere).children("h1").css("color", "black");
+        $("#"+ beforeHere).children("p").css("color", "yellow");
+    }
+
+    $("#"+ realID).children("h1").css("color", "red");
+    $("#"+ realID).children("p").css("color", "red");
+
+    beforeHere = realID;
+
+    return realID; //아이디 리턴
 }
 
-//현재 접근하고 있는 곳 표시
-function hereArray(){
+//(일반 배열)값 변경 및 삽입 (변수명, 인덱스, 값)
+function setArray(id, indexNum, value){
+    var realID = id + String(indexNum);
+    var isExist = $("#"+ realID).children("p").length;
 
-}
+    //console.log("isExist 값 : " + isExist)
+    if(isExist != 0) {
+        //0이 아니면 이미 p 태그가 존재하는 것 (값을 바꿔주기)
+        $("#"+ realID).children("p").html("<br/>" + value);
+    }
+    else {
+        //없으면 새로 만들어서 추가
+        var values = document.createElement('p');
+        $(values).addClass("arrayFont");
+        values.innerHTML = value;
+        $("#"+ realID).append(values);
+    }
 
-//값 변경
-function setArrray(){
-
-}
-
-//이중배열 값 변경
-function setDoubleArrray(){
-
+    return realID; //삽입한 곳 아이디 리턴
 }
 
 //값 삭제
-function deleteArray(){
-
+function deleteArray(id, indexNum){
+    var realID = id + String(indexNum);
+    $("#" + realID).children("p").remove();
+    return realID; //값 삭제한 곳의 아이디 리턴
 }
 
 //String 배열 따로 만들기
 function stringArray() {
-
+  //보류(크기 문제)
 }
 
-//리사이즈
-function resizeArray() {
-
+//리사이즈 (일반 배열 기준) -> 애매해서 왠만하면 쓰지 않는 방향으로 
+function resizeArray(id, num) {
+    allRemove(id);
+    var whatIndex = thisArray.indexOf(id);
+    createArray(id, thisType[whatIndex], num);
 }
 
 //배열의 값을 리턴 (배열명, 인덱스)
 function returnValue(id, num) {
-
+    var realID = id + String(num);
+    var returnValue = $("#"+realID).children("p").text();
+    console.log("리턴됨 : " + returnValue);
+    return returnValue;
 }
 
 //타입 번호 리턴
 function returnType(id) {
+    var whatIndex = thisArray.indexOf(id); //몇번째 만들어진 배열인지
+    console.log(thisType[whatIndex]);
+    return thisType[whatIndex];
+}
 
+//해당 변수명 배열을 통째로 지운다
+function allRemove(id) {
+    var whatNum = thisArray.indexOf(id);
+    for(var k=0; k<thisNum[whatNum]; k++) {
+        $("#"+ (id + String(k))).remove();
+    }
+    return id; //지운 것에 대해 리턴
+}
+
+
+//2차원 배열 따로 만들기
+//row: 행(가로) col: 열(세로)
+//입력 인자 : 차례대로 변수명, 타입, 행, 열
+function createDoubleArray(id, type, row, col) {
+   
+}
+
+//이중배열 값 변경 (변수명, row, col, 값)
+function setDoubleArrray(id, index1, index2, value){
+    var realID = id + String(index1) + String(index2); 
+    //실제 아이디 양식을 갖추도록 함 이차원 
+    //배열 이름 + row + col 예시: test22 -> test[2][2]
+
+    var isExist = $("#"+ realID).children("p").length;
+    
+    if(isExist != 0) {
+        //0이 아니면 이미 p 태그가 존재하는 것 (값을 바꿔주기)
+        $("#"+ realID).children("p").html("<br/>" + value);
+    }
+    else {
+        //없으면 새로 만들어서 추가
+        var value = document.createElement('p');
+        value.innerHTML = "<br/>" + value;
+        $("#"+ realID).append(value);
+    }
+    return realID; //삽입한 곳 아이디 리턴
+}
+
+
+//배열의 값을 리턴 (배열명, 인덱스)
+function returnDoubleValue(id, num) {
+    
 }

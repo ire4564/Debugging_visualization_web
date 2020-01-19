@@ -149,3 +149,8 @@ h2 {
     display: inline;
     font-size: 30px;
 }
+.arrayFont {
+    font-size: 30px;
+    color: yellow;
+    margin-left: 30px;
+}

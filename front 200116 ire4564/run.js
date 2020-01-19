@@ -71,10 +71,42 @@ topStack();
 
  /***************************Array function*****************************************/
  //일반 배열 생성
- createArray("test", 0, 12);
- createArray("this", 1, 5);
+ createArray("this", 10, 7);
+ createArray("test", 13, 5);
 
 
+//일반 배열 값 변경 및 삽입
+setArray("test", 0, 5);
+setArray("test", 1, 3);
 
+//사용되고 있는 곳 나타내기
+hereArray("this", 1)
+//hereArray("test", 0)
+hereArray("test", 1)
+
+for(var i=0; i<4; i++) {
+    setArray("this", i, 3.5);
+}
+
+//값을 삭제하기
+deleteArray("this", 1);
+deleteArray("test", 0);
+
+//일반 배열 값 리턴
+returnValue("this", 0)
+returnValue("test", 1)
+
+//일반 배열 타입 리턴
+returnType("this");
+
+//변수랑 같이 쓰는 거 테스트 하려고 예시
+createVariable("Test", 0); //하나만 생성하기
+createVariable("Two", 2); //하나만 생성하기
+ 
+//변수를 하나의 아이디로 모두 지우기
+//allRemove("test");
+
+//변수 리사이즈
+//resizeArray("this", 5);
 
  /************************************************************************************/
