@@ -30,7 +30,7 @@ function createStack(num) {
 
         if(i == 1){
             //첫번째 스택이면
-            eval("stack" + index + ".style.marginTop = '5%';")
+            eval("stack" + index + ".style.marginTop = '2%';")
             eval("stack" + index + ".append(high)");
         } 
         else {
@@ -100,7 +100,7 @@ function addStack(num) {
 //어느 칸에, 무슨 값으로 바꿀 것인지 인자로 입력
 //인자를 하나만 입력했을 시에는 현재 스택 포인터가 가리키고 있는 값 바꾸기
 /**여기서 주의! 인자 넣는 순서가 값, 아이디 순서이다!!****/
-function putStack(value, id) {
+function setStack(value, id) {
     //값을 넣을 태그를 생성한다
     var putThis = document.createElement('p');
     $(putThis).addClass('stackValue');

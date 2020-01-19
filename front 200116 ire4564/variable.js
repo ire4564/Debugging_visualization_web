@@ -19,14 +19,44 @@ var index = 0;
  * 
  */
 
-//변수 하나씩 생성 시에
+//변수 하나씩 생성 시에(변수명, 타입, 값)
+/*
+ * 기본 자료형
+ * int,long : 0 -> 대표는 int로 취급
+ * float, double : 1 -> 대표는 double로 취급
+ * boolean : 2 
+ * char : 3
+ *
+ */
 function createVariable (id, type, value) {
+
         eval("var variable" + index + "=" + "document.createElement('div');");
         eval("$(variable" + index + ").addClass('variables');");
         
         //타입은 h5 태그로 표현
         var innerType = document.createElement('h5');
-        innerType.innerHTML = "<br/>" + type;
+        var whatType = '';
+        //각 번호별로 타입 만들기
+        switch(type) {
+            case 0 :
+                //int(long)
+                whatType = "int";
+                break;
+            case 1 :
+                //double(float)
+                whatType = "double";
+                break;
+            case 2 :
+                //boolean
+                whatType = "bool";
+                break;
+            case 3 :
+                //char
+                whatType = "char";
+                break;
+        }
+
+        innerType.innerHTML = "<br/>" + whatType;
 
         //변수명은 h4 태그로 표현
         var  innerId = document.createElement('h4');
@@ -60,19 +90,16 @@ function createVariable (id, type, value) {
         
             //빈 변수를 생성하기
             var number = document.createElement('p');
-            if(type == 'int') {
+            if(type == 0) {
                 number.innerHTML = 0;
             }
-            else if(type == 'bool') {
-                number.innerHTML = "true";
-            }
-            else if(type == 'float') {
+            else if(type == 1) {
                 number.innerHTML = "0.0f";
             }
-            else if(type == 'byte') {
-                number.innerHTML = 0;
+            else if(type == 2) {
+                number.innerHTML = "true";
             }
-            else if(type == 'char') {
+            else if(type == 3) {
                 number.innerHTML = "null";
             }
             else {
@@ -101,13 +128,32 @@ function stringVariable(){
     //보류
 }
 
-//변수 타입 바꾸기
+//변수 타입 바꾸기(변수명, 타입 번호)
 function typeVariable(id, type){
-    $('#'+id).children("h5").html("<br/>" + type);
+    var newType = "";
+    switch(type) {
+        case 0 :
+            //int(long)
+            newType = "int";
+            break;
+        case 1 :
+            //double(float)
+            newType = "double";
+            break;
+        case 2 :
+            //boolean
+            newType = "bool";
+            break;
+        case 3 :
+            //char
+            newType = "char";
+            break;
+    }
+    $('#'+id).children("h5").html("<br/>" + newType);
 }
 
 //변수 값 바꾸기
-function modifyVariable(id, value){
+function setVariable(id, value){
     $('#'+id).children("p").text(value);
 }
 
@@ -120,7 +166,27 @@ function deleteVariable(id){
 function returnType(id) {
     var Type = $('#'+id).children("h5").text();
     console.log("타입 리턴 : " + Type);
-    return Type;
+    Type = trim(Type); //공백 제거
+    var newType = 0;
+    switch(Type) {
+        case "int" :
+            //int(long)
+            newType = 0;
+            break;
+        case "double" :
+            //double(float)
+            newType = 1;
+            break;
+        case "bool" :
+            //boolean
+            newType = 2;
+            break;
+        case "char" :
+            //char
+            newType = 3;
+            break;
+    }
+    return newType;
 }
 
 //값 리턴

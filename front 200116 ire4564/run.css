@@ -76,8 +76,21 @@ body {
     width: 100px;
     height: 100px;
     text-align: center;
-    border-radius: 5px;
-    margin-left: 10%;
+    border-radius: 8px;
+    margin-left: 5%;
+    opacity: 1;
+}
+
+.emptyArray {
+    float: left;
+    border: solid 5px white;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 8px;
+    margin-left: 0%;
+    margin-top: 5%;
     opacity: 1;
 }
 
@@ -124,4 +137,15 @@ h3 {
     margin-left: 25px;
     color: blue;
     font-size: 20px;
+}
+
+h1 {
+    color:black;
+    font-size: 18px;
+}
+
+h2 {
+    color: black;
+    display: inline;
+    font-size: 30px;
 }
