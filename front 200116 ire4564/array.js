@@ -14,7 +14,7 @@ var colorCode = ['#819FF7', '#D8CEF6', '#F5BCA9']; //랜덤 색깔(배열 구분
 
 var showExist = document.createElement('div');
 showExist.style.marginTop = "20px";
-showExist.style.marginBottom = "-20px";
+showExist.style.marginBottom = "0px";
 //showExist.innerHTML = "test";
 document.getElementById('show').append(showExist);
 
@@ -312,8 +312,140 @@ function allRemove(id) {
 //2차원 배열 따로 만들기
 //row: 행(가로) col: 열(세로)
 //입력 인자 : 차례대로 변수명, 타입, 행, 열
-function createDoubleArray(id, type, row, col) {
+function createDoubleArray(id, type, row, col){
+
+    //row는 8이 최대 값(화면 크기 때문에) 
+    //col은 4가 최대 값(화면 크기 때문에)
+    //만약 필요하다면 다시 요청 부탁! (수정해야돼용)
+
+    var arrayid = '';
+    var windowSize = $(window).width();
+    var showNewArray = document.createElement('div');
+    //$(showNewArray).addClass("section");
+ 
+
+    //변수명
+    var showID = document.createElement('h2');
+    showID.innerHTML = id;
+    //타입
+    var showType = document.createElement('h2');
+    var newType = "";
+    switch(type) {
+        case 10 :
+            //int(long)
+            newType = "int";
+            break;
+        case 11 :
+            //double(float)
+            newType = "double";
+            break;
+        case 12 :
+            //boolean
+            newType = "bool";
+            break;
+        case 13 :
+            //char
+            newType = "char";
+            break;
+    }
+    showType.innerHTML = "[" + newType + "]";
+
+    /*따로 빼서 추가하기*/
+    showExist.append(showID);
+    showExist.append(showType);
+    var enter = document.createElement('br');
+    showExist.append(enter);
+
+    var arrayColor = 0;
+    //이미 만들어진 배열이 존재한다면
+    if(thisArray[0] != null) {
+        if(thisArray[1] != null) {
+            arrayColor = colorCode[2];
+        }
+        else {
+            arrayColor = colorCode[1];
+        }
+        //임시방편으로 보편화 x (위치 조정 필요)
+
+        if(index < 8){
+            var compare = 8; //원래 있어야 하는 것의 인덱스 
+            var howmuch = compare - index; //몇 개가 없는지
+        }
+        else {
+            var compare = 16; //원래 있어야 하는 것의 인덱스 
+            var howmuch = compare - index; //몇 개가 없는지
+        }
+
+        for(var k=0; k<howmuch; k++) {
+            var addEmpty = document.createElement('div');
+            $(addEmpty).addClass('emptyArray');
+            showNewArray.append(addEmpty);
+        }
+
+        index = 0;
+    }
+    else {
+        arrayColor = colorCode[0];
+        //처음 만드는 배열이라면
+    }
+
+    thisArray.push(String(id));
+    thisType.push(type);
+    thisNum.push(col);
+    
+    howManyArray++;
+
+    showID.style.color = arrayColor;
+    showType.style.color = arrayColor;
+
+    
+    for(var r=0; r<row; r++){
+
+        var containRow = document.createElement('div');
+        $(containRow).addClass('section');
+        showNewArray.append(containRow);
+
+        for(var i=0; i<col; i++){
    
+            var forIdIndex = String(r) + String(i);
+
+            eval("var array" + forIdIndex + "=" + "document.createElement('div');");
+            eval("$(array" + forIdIndex + ").addClass('arrays');");
+
+        //인덱스 나타낼 태그 넣기(인덱스 표현)
+        var innerId = document.createElement('h1');
+        innerId.innerHTML = "[" + r + "]" + "[" + i + "]"; 
+        eval("array" + forIdIndex + ".append(innerId)");
+
+            if(i == 0 && r == 0){
+                //[0][0] 위치이면 위치 잡아주기
+                eval("array" + forIdIndex + ".style.marginLeft = '5%';")
+            } 
+            else if(i == 0 && r != 0){
+                //[0][n] 위치라면
+                eval("array" + forIdIndex + ".style.marginLeft = '5%';")
+            } 
+            else if(r != 0) {
+                //첫번쨰 줄이 아닐 경우
+                eval("array" + forIdIndex + ".style.marginLeft = '-0.5%';")
+            }
+            else {
+                eval("array" + forIdIndex + ".style.marginLeft = '-0.5%';")
+            } 
+            //배열의 아이디
+            arrayid = id + String(forIdIndex);
+        
+            eval("$(array" + forIdIndex + ").attr('id', arrayid)");  
+            eval("array" + forIdIndex + ".style.backgroundColor = arrayColor;")
+            eval("containRow.appendChild(array" + forIdIndex + ");");
+
+            index++;
+        }
+    }
+        paper.append(showNewArray);
+
+        return arrayid; //마지막으로 만들어진 array id 반환
+
 }
 
 //이중배열 값 변경 (변수명, row, col, 값)
@@ -326,19 +458,24 @@ function setDoubleArrray(id, index1, index2, value){
     
     if(isExist != 0) {
         //0이 아니면 이미 p 태그가 존재하는 것 (값을 바꿔주기)
-        $("#"+ realID).children("p").html("<br/>" + value);
+        $("#"+ realID).children("p").html(value);
     }
     else {
         //없으면 새로 만들어서 추가
-        var value = document.createElement('p');
-        value.innerHTML = "<br/>" + value;
-        $("#"+ realID).append(value);
+        var values = document.createElement('p');
+        $(values).addClass('arrayValues');
+        values.innerHTML = value;
+        $("#"+ realID).append(values);
     }
     return realID; //삽입한 곳 아이디 리턴
 }
 
 
 //배열의 값을 리턴 (배열명, 인덱스)
-function returnDoubleValue(id, num) {
+function returnDoubleValue(id, index1, index2) {
+    var realID = id + String(index1) + String(index2); 
+    var values = $("#" + realID).children("p").text();
+    console.log("배열 인덱스 " + String(index1) + String(index2) + " 의 값은 -> " + values);
     
+    return values;
 }
