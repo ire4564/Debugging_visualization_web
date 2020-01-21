@@ -4,10 +4,10 @@ var paper = document.getElementById('show');
 
 
 /***************************Variable function*************************************
-createVariable("Test","int"); //하나만 생성하기
-createVariable("Hello","bool"); //하나만 생성하기
-createVariable("TestTwo", "bool", "false"); //하나만 생성하기
-createVariable("TestThree", "int", "121"); //하나만 생성하기
+createVariable("Test",1); //하나만 생성하기
+createVariable("Hello",2); //하나만 생성하기
+createVariable("TestTwo", 0, "false"); //하나만 생성하기
+createVariable("TestThree", 0, "121"); //하나만 생성하기
 
 
 //사용되고 있는 변수 붉은 글씨로 나타내기
@@ -32,7 +32,7 @@ returnType("TestThree");
 //값 리턴하기
 returnValue("Hello");
 
-************************************************************************************/
+***********************************************************************************/
 
 
 /***************************Stack function*****************************************
@@ -98,6 +98,7 @@ returnValue("test", 1)
 
 //일반 배열 타입 리턴
 returnType("this");
+returnType("test");
 
 //변수랑 같이 쓰는 거 테스트 하려고 예시
 createVariable("Test", 0); //하나만 생성하기
@@ -109,10 +110,10 @@ createVariable("Two", 2); //하나만 생성하기
 //변수 리사이즈
 //resizeArray("this", 5);
 
- ***********************************************************************************/
+**********************************************************************************/
 
  //이차원 배열 추가
- createDoubleArray("Doubles", 10, 4, 5);
+ createDoubleArray("Doubles", 20, 4, 5);
  //createDoubleArray("Test", 20, 2, 3);
 
  //이차원 배열 값 변경

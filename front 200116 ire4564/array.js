@@ -62,6 +62,13 @@ $( window ).resize(function() {
 //변수명, 타입, 개수 인자로 입력
 function createArray(id, type, num) {
 
+    //타입 리턴을 하가 위해서
+    var hiddenType = document.createElement("p");
+    hiddenType.innerHTML = type;
+    $(hiddenType).attr('id', id + "T");
+    hiddenType.style.visibility = "hidden";
+    body.append(hiddenType);
+
     var arrayid = '';
     var windowSize = $(window).width();
     var showNewArray = document.createElement('div');
@@ -292,13 +299,6 @@ function returnValue(id, num) {
     return returnValue;
 }
 
-//타입 번호 리턴
-function returnType(id) {
-    var whatIndex = thisArray.indexOf(id); //몇번째 만들어진 배열인지
-    console.log(thisType[whatIndex]);
-    return thisType[whatIndex];
-}
-
 //해당 변수명 배열을 통째로 지운다
 function allRemove(id) {
     var whatNum = thisArray.indexOf(id);
@@ -313,6 +313,13 @@ function allRemove(id) {
 //row: 행(가로) col: 열(세로)
 //입력 인자 : 차례대로 변수명, 타입, 행, 열
 function createDoubleArray(id, type, row, col){
+    
+    //타입 리턴을 하가 위해서
+    var hiddenType = document.createElement("p");
+    hiddenType.innerHTML = type;
+    $(hiddenType).attr('id', id + "T");
+    hiddenType.style.visibility = "hidden";
+    body.append(hiddenType);
 
     //row는 8이 최대 값(화면 크기 때문에) 
     //col은 4가 최대 값(화면 크기 때문에)
@@ -331,19 +338,16 @@ function createDoubleArray(id, type, row, col){
     var showType = document.createElement('h2');
     var newType = "";
     switch(type) {
-        case 10 :
+        case 20 :
             //int(long)
             newType = "int";
             break;
-        case 11 :
+        case 21 :
             //double(float)
             newType = "double";
             break;
-        case 12 :
-            //boolean
-            newType = "bool";
             break;
-        case 13 :
+        case 23 :
             //char
             newType = "char";
             break;
