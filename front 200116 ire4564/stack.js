@@ -49,7 +49,7 @@ function createStack(id, num) {
             eval("stack" + index + ".style.marginTop = '-1%';")
         }
 
-        eval("$(stack" + index + ").attr('id','stack"+ index +"')");   
+        eval("$(stack" + index + ").attr('id', id + String(index))");   
         eval("paper.appendChild(stack" + index + ");");
 
         index++;
