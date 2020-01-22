@@ -4,6 +4,7 @@
  * value: 변수값
  */
 
+var body = document.body;
 var index = 0;    
 
 /*************수정사항****************/
@@ -19,17 +20,57 @@ var index = 0;
  * 
  */
 
-//변수 하나씩 생성 시에
+//변수 하나씩 생성 시에(변수명, 타입, 값)
+/*
+ * 기본 자료형
+ * int,long : 0 -> 대표는 int로 취급
+ * float, double : 1 -> 대표는 double로 취급
+ * boolean : 2 
+ * char : 3
+ *
+ */
 function createVariable (id, type, value) {
+
+        //타입 리턴을 하가 위해서
+        var hiddenType = document.createElement("p");
+        hiddenType.innerHTML = type;
+        $(hiddenType).attr('id', id + "T");
+        hiddenType.style.visibility = "hidden";
+        body.append(hiddenType);
+
         eval("var variable" + index + "=" + "document.createElement('div');");
         eval("$(variable" + index + ").addClass('variables');");
         
         //타입은 h5 태그로 표현
         var innerType = document.createElement('h5');
-        innerType.innerHTML = "<br/>" + type;
+        var whatType = '';
+        //각 번호별로 타입 만들기
+        switch(type) {
+            case 0 :
+                //int(long)
+                whatType = "int";
+                break;
+            case 1 :
+                //double(float)
+                whatType = "double";
+                break;
+            case 2 :
+                //boolean
+                whatType = "bool";
+                break;
+            case 3 :
+                //char
+                whatType = "char";
+                break;
+            default :
+                whatType = "unknown";
+                break;
+        }
+
+        innerType.innerHTML = "<br/>" + whatType;
 
         //변수명은 h4 태그로 표현
-        var  innerId = document.createElement('h4');
+        var innerId = document.createElement('h4');
         innerId.innerHTML = id;
 
         eval("variable" + index + ".append(innerType)");
@@ -37,11 +78,11 @@ function createVariable (id, type, value) {
 
         if(index == 0){
             //첫번째 배열이면
-            eval("variable" + index + ".style.marginTop = '10%';")
+            eval("variable" + index + ".style.marginTop = '1%';")
            
         } 
         else {
-            eval("variable" + index + ".style.marginTop = '10%';")
+            eval("variable" + index + ".style.marginTop = '1%';")
             eval("variable" + index + ".style.marginLeft = '2%';")
         }
       
@@ -60,19 +101,16 @@ function createVariable (id, type, value) {
         
             //빈 변수를 생성하기
             var number = document.createElement('p');
-            if(type == 'int') {
+            if(type == 0) {
                 number.innerHTML = 0;
             }
-            else if(type == 'bool') {
-                number.innerHTML = "true";
-            }
-            else if(type == 'float') {
+            else if(type == 1) {
                 number.innerHTML = "0.0f";
             }
-            else if(type == 'byte') {
-                number.innerHTML = 0;
+            else if(type == 2) {
+                number.innerHTML = "true";
             }
-            else if(type == 'char') {
+            else if(type == 3) {
                 number.innerHTML = "null";
             }
             else {
@@ -83,12 +121,16 @@ function createVariable (id, type, value) {
         }
 
         //변수 상자 아이디 설정해주기
+        //eval("$(variable" + index + ").attr('id','V +"+ id +"')");  //변수명으로 아이디 설정해주기
         eval("$(variable" + index + ").attr('id','"+ id +"')");  //변수명으로 아이디 설정해주기
         eval("paper.appendChild(variable" + index + ");"); //화면에 추가해주기
 
         index++;
 
-        console.log("객체의 id가 return 됨 : " + id);
+
+        //console.log("type 은? : " + $("#" + id + "T").text());
+        console.log("id는? : "  + id);
+
         return id;
     }
 //현재 사용하는 변수
@@ -101,13 +143,35 @@ function stringVariable(){
     //보류
 }
 
-//변수 타입 바꾸기
+//변수 타입 바꾸기(변수명, 타입 번호)
 function typeVariable(id, type){
-    $('#'+id).children("h5").html("<br/>" + type);
+    var newType = "";
+    switch(type) {
+        case 0 :
+            //int(long)
+            newType = "int";
+            break;
+        case 1 :
+            //double(float)
+            newType = "double";
+            break;
+        case 2 :
+            //boolean
+            newType = "bool";
+            break;
+        case 3 :
+            //char
+            newType = "char";
+            break;
+    }
+    $('#'+id).children("h5").html("<br/>" + newType);
 }
 
 //변수 값 바꾸기
-function modifyVariable(id, value){
+function setVariable(id, value){
+    var types =  $("#" + id + "T").text();
+    if(types==0) value = parseInt(value);
+    if(types==3) value = String.fromCharCode(value);
     $('#'+id).children("p").text(value);
 }
 
@@ -118,14 +182,14 @@ function deleteVariable(id){
 
 //타입 리턴
 function returnType(id) {
-    var Type = $('#'+id).children("h5").text();
-    console.log("타입 리턴 : " + Type);
-    return Type;
+    var types =  $("#" + id + "T").text();
+    console.log("타입 리턴 통합 " + types);
+    return types;
 }
 
 //값 리턴
-function returnValue(id) {
+function V_returnValue(id) {
     var Value = $('#'+id).children("p").text();
     console.log("값 리턴 :" + Value);
-   // return Value;
+    return Value;
 }

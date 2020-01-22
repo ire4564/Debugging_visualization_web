@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+    <html lang="ko">
+        <head>
+            <meta charset="utf-8">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <title>대신 그려드립니다</title>
+            <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
+        </head>
+        <body>
+     
+        <div id="total">
+
+            <div id="title">
+                <img src="title.png" width="850px" height="250px" id="img_logo"/>
+            </div>
+            </br><br/><br/>
+            
+            <form action="run.php" method="POST">
+                <div id="textfield">
+                    <input type="text" id="putText" name="code" required />
+                </div>
+                <br/><br/><br/><br/>
+                <div id="footer">
+                    <input type="submit" id="submit" value="START DEBUGING">
+                    <p id="made">@MADE BY 내가그린 기린그림</p>
+                </div>
+                
+              </form>
+              <!--
+            <div id="textfield">
+            <input type="text" value="PUT YOUR CODE HERE!" id="putText" name ="code" onkeypress="if(event.keyCode==13) {Enter();}">
+            </div>
+            <br/><br/><br/><br/>
+
+-->
+        </div>
+        <script src="Index.js"></script>
+        <link rel="stylesheet" href="Index.css">
+        </body>
+</html>
