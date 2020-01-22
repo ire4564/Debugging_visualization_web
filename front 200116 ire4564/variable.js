@@ -4,6 +4,7 @@
  * value: 변수값
  */
 
+var body = document.body;
 var index = 0;    
 
 /*************수정사항****************/
@@ -21,6 +22,17 @@ var index = 0;
 
 //변수 하나씩 생성 시에
 function createVariable (id, type, value) {
+<<<<<<< HEAD
+=======
+
+        //타입 리턴을 하가 위해서
+        var hiddenType = document.createElement("p");
+        hiddenType.innerHTML = type;
+        $(hiddenType).attr('id', id + "T");
+        hiddenType.style.visibility = "hidden";
+        body.append(hiddenType);
+
+>>>>>>> 346b3b1bfdd36b2661959d6537947bc0ab2e1600
         eval("var variable" + index + "=" + "document.createElement('div');");
         eval("$(variable" + index + ").addClass('variables');");
         
@@ -83,12 +95,15 @@ function createVariable (id, type, value) {
         }
 
         //변수 상자 아이디 설정해주기
-        eval("$(variable" + index + ").attr('id','"+ id +"')");  //변수명으로 아이디 설정해주기
+        eval("$(variable" + index + ").attr('id','V +"+ id +"')");  //변수명으로 아이디 설정해주기
         eval("paper.appendChild(variable" + index + ");"); //화면에 추가해주기
 
         index++;
 
-        console.log("객체의 id가 return 됨 : " + id);
+
+        console.log("type 은? : " + $("#" + id + "T").text());
+        console.log("id는? : "  + id);
+
         return id;
     }
 //현재 사용하는 변수
@@ -118,13 +133,19 @@ function deleteVariable(id){
 
 //타입 리턴
 function returnType(id) {
+<<<<<<< HEAD
     var Type = $('#'+id).children("h5").text();
     console.log("타입 리턴 : " + Type);
     return Type;
+=======
+    var types =  $("#" + id + "T").text();
+    console.log("타입 리턴 통합 " + types);
+    return types;
+>>>>>>> 346b3b1bfdd36b2661959d6537947bc0ab2e1600
 }
 
 //값 리턴
-function returnValue(id) {
+function V_returnValue(id) {
     var Value = $('#'+id).children("p").text();
     console.log("값 리턴 :" + Value);
    // return Value;
