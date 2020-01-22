@@ -24,6 +24,17 @@ body {
     height: 500px;
     overflow: scroll;
     border-radius: 5px;
+    /*추가*/
+    background-color: white;
+}
+#codefield div{
+    color: black;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+#codefield span:hover{
+    color: red;
 }
 
 .btn {
@@ -32,6 +43,22 @@ body {
     font-family: 'Do Hyeon', sans-serif;
     font-size: 50px;
     width: 75px;
+    height: 70x;
+    color: white;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    border-radius: 5px;
+    background-color: #65a69f;
+}
+
+.btn2 {
+    margin-left: -30px;
+    margin-right: 25px;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 50px;
+    width: 150px;
     height: 70x;
     color: white;
     border-style: solid;
@@ -76,8 +103,21 @@ body {
     width: 100px;
     height: 100px;
     text-align: center;
-    border-radius: 5px;
-    margin-left: 10%;
+    border-radius: 8px;
+    margin-left: 5%;
+    opacity: 1;
+}
+
+.emptyArray {
+    float: left;
+    border: solid 5px white;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 8px;
+    margin-left: 0%;
+    margin-top: 5%;
     opacity: 1;
 }
 
@@ -124,4 +164,31 @@ h3 {
     margin-left: 25px;
     color: blue;
     font-size: 20px;
+}
+
+h1 {
+    color:black;
+    font-size: 18px;
+}
+
+h2 {
+    color: black;
+    display: inline;
+    font-size: 30px;
+}
+.arrayFont {
+    font-size: 30px;
+    color: yellow;
+    margin-left: 30px;
+}
+
+.section {
+    width: 100%;
+    height: 110px;
+}
+
+.arrayValues {
+    font-size: 20px;
+    color: yellow;
+    margin-left: 25px;
 }
