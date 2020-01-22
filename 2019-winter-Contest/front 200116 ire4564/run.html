@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+    <html lang="ko">
+        <head>
+            <meta charset="utf-8">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <title>대신 그려드립니다</title>
+            <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
+        </head>
+        <body>
+        <img src="yourcode.png" width="500px" height="100px" id="yourcode">
+        
+        <div calss="row">
+            <div id="codefield" class="col-md-4 col-sm-4">
+                <input type="text" value="LOOK YOUR CODE" id="lookcode" onkeypress="if(event.keyCode==13) {Enter();}">
+            </div>
+
+            <div id="show" class="col-md-8 col-sm-8">
+            <!--그림이 그려질 영역-->
+            </div>
+
+            <div id="btn_area" class="col-md-4 col-sm-4">
+                <input type="button" id="reset" class="btn2" value="RESET">
+                <input type="button" id="go" class="btn" value="▶"><br/>
+            </div>
+        
+        </div>
+        <script src="stack.js"></script>
+        <script src="variable.js"></script>
+        <script src="array.js"></script>
+        <script src="run.js"></script>
+
+        <link rel="stylesheet" href="run.css">
+        </body>
+</html>
