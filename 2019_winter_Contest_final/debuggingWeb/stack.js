@@ -21,16 +21,24 @@ high.innerHTML = 'high address';
 
 
 //처음 스택 할당 시에 사용
-function createStack(num) {
+function createStack(id, num) {
+    
+    //타입 리턴을 하가 위해서
+    var hiddenType = document.createElement("p");
+    hiddenType.innerHTML = "101"; //스택은 타입 통합
+    $(hiddenType).attr('id', id + "T");
+    hiddenType.style.visibility = "hidden";
+    body.append(hiddenType);
+
     stackNum = num; //스택 수 책정
     for(var i=1; i<=num; i++){
         eval("var stack" + index + "=" + "document.createElement('div');");
         eval("$(stack" + index + ").addClass('stacks');");
-        existStack.push("stack" + index);
+        existStack.push(id + String(index));
 
         if(i == 1){
             //첫번째 스택이면
-            eval("stack" + index + ".style.marginTop = '5%';")
+            eval("stack" + index + ".style.marginTop = '2%';")
             eval("stack" + index + ".append(high)");
         } 
         else {
@@ -41,7 +49,7 @@ function createStack(num) {
             eval("stack" + index + ".style.marginTop = '-1%';")
         }
 
-        eval("$(stack" + index + ").attr('id','stack"+ index +"')");   
+        eval("$(stack" + index + ").attr('id', id + String(index))");   
         eval("paper.appendChild(stack" + index + ");");
 
         index++;
@@ -82,7 +90,7 @@ function addStack(num) {
         }
         eval("stack" + index + ".style.marginTop = '-1%';")
 
-        eval("$(stack" + index + ").attr('id','stack"+ index +"')");   
+        eval("$(stack" + index + ").attr('id','S"+ index +"')");   
         eval("paper.appendChild(stack" + index + ");");
 
         index++;
@@ -100,7 +108,7 @@ function addStack(num) {
 //어느 칸에, 무슨 값으로 바꿀 것인지 인자로 입력
 //인자를 하나만 입력했을 시에는 현재 스택 포인터가 가리키고 있는 값 바꾸기
 /**여기서 주의! 인자 넣는 순서가 값, 아이디 순서이다!!****/
-function putStack(value, id) {
+function setStack(value, id) {
     //값을 넣을 태그를 생성한다
     var putThis = document.createElement('p');
     $(putThis).addClass('stackValue');
