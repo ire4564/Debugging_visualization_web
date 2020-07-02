@@ -1,4 +1,5 @@
-# 2019년 동계 주니어 소프트웨어 창의 대회 출품작: 주니어 프로그래머를 위한 디버깅 프로그램 (Web programm)
+# 주니어 프로그래머를 위한 디버깅 프로그램 (Web programm)
+2019년 동계 주니어 소프트웨어 창의 대회 출품작
 http://15.164.224.103/debuggingWeb/Index.html <--- Site
 ![image](https://user-images.githubusercontent.com/44183221/86325619-4aca6980-bc7b-11ea-96a8-940e93277e9d.png)
 
