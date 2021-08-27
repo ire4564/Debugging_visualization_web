@@ -28,7 +28,7 @@
 
 ## Point function
 
-![image-20210827151807095](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20210827151807095.png) 
+![image](https://user-images.githubusercontent.com/44183221/131086585-062ce7c8-84f6-497e-9327-b203c63dd196.png) 
 
 * <b>원하는 코드 입력</b>
   자신이 푼 알고리즘 문제, 눈으로 동작을 직접 확인하고 싶은 코드를 코드 입력 란에 입력합니다.
