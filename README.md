@@ -1,4 +1,4 @@
-![대신 그려드립니다](C:\Users\user\Downloads\대신 그려드립니다.png) 
+![대신 그려드립니다](https://user-images.githubusercontent.com/44183221/131083488-b75c2ea8-1541-4a02-992a-7b8af7f59717.png)
 
 ![preview badge](https://img.shields.io/github/languages/code-size/ire4564/Debugging_visualization_web)   ![preview badge](https://img.shields.io/github/repo-size/ire4564/Debugging_visualization_web)
 
